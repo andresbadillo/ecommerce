@@ -10,7 +10,7 @@ const Card = (data) => {
                     src={data.data.images[0]} 
                     alt={data.data.title}
                 ></img>
-                <div className='absolute top-0 right-0 flex justify-center items-center bg-white w-6 h-6 rounded-full m-2 p-1'>
+                <div className='absolute top-0 right-0 flex justify-center items-center bg-white w-6 h-6 rounded-full m-2 p-1 pb-2'>
                     +
                 </div>
             </figure>
