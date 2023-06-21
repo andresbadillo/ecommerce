@@ -1,11 +1,10 @@
 import { useContext } from 'react';
 import { XMarkIcon } from '@heroicons/react/24/solid';
 import { ShoppingCartContext } from '../../context';
-import './styles.css'
+import './styles.css';
 
 const ProductDetail = () => {
     const context = useContext(ShoppingCartContext);
-    console.log('PRODUCT: ', context.productToShow);
 
     return (
         <aside 
