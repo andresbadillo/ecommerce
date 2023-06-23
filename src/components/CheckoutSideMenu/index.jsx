@@ -24,6 +24,7 @@ const CheckoutSideMenu = () => {
 
         context.setOrder([...context.order, orderToAdd]);
         context.setCartProducts([]);
+        context.closeCheckoutSideMenu();
     }
 
     let renderCheckoutButton;
@@ -52,7 +53,7 @@ const CheckoutSideMenu = () => {
                     <XMarkIcon className='h-6 w-6 text-black cursor-pointer'/>
                 </div>
             </div>
-            <div className='px-6 scrollable-cards flex-1'>
+            <div className='pl-6 pr-4 scrollable-cards flex-1'>
                 {
                     context.cartProducts.map(product => (
                         <div className='my-3'>
