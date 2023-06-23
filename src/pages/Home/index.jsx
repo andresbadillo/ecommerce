@@ -7,6 +7,28 @@ import { ProductDetail } from '../../components/ProductDetail';
 function Home() {
   const context = useContext(ShoppingCartContext);
 
+  const renderView = () => {
+    if (context.searchByTitle?.length > 0) {
+      if (context.filteredItems?.length > 0) {
+        return (
+          context.filteredItems?.map(item => (
+            <Card key={item.id} data={item} />
+          ))
+        )
+      } else {
+        return (
+          <div className='flex w-full justify-center'>Not found</div>
+        )
+      }
+    } else {
+      return (
+        context.items?.map(item => (
+          <Card key={item.id} data={item} />
+        ))
+      )
+    }
+  }
+
   return (
     <Layout>
       <div className='flex relative w-60 justify-center items-center mb-4'>
@@ -19,11 +41,7 @@ function Home() {
         onChange={(event) => context.setSearchByTitle(event.target.value)}
       />
       <div className='grid gap-4 grid-cols-3 w-full max-w-screen-md'>
-        {
-          context.items?.map(item => (
-            <Card key={item.id} data={item} />
-          ))
-        }
+        {renderView()}
       </div>
       <ProductDetail />
     </Layout>
