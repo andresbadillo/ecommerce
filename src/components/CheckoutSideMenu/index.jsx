@@ -8,9 +8,21 @@ import './styles.css';
 const CheckoutSideMenu = () => {
     const context = useContext(ShoppingCartContext);
 
-    const handleDelete =(id) => {
+    const handleDelete = (id) => {
         const filteredProducts = context.cartProducts.filter(product => product.id != id);
         context.setCartProducts(filteredProducts);
+    }
+
+    const handleCheckout = () => {
+        const orderToAdd = {
+            date:'01.02.23',
+            products: context.cartProducts,
+            totalProducts: context.cartProducts.length,
+            totalPrice: totalPrice(context.cartProducts),
+        };
+
+        context.setOrder([...context.order, orderToAdd]);
+        context.setCartProducts([]);
     }
 
     return (
@@ -23,7 +35,7 @@ const CheckoutSideMenu = () => {
                     <XMarkIcon className='h-6 w-6 text-black cursor-pointer'/>
                 </div>
             </div>
-            <div className='px-6 scrollable-cards'>
+            <div className='px-6 scrollable-cards flex-1'>
                 {
                     context.cartProducts.map(product => (
                         <div className='my-3'>
@@ -39,11 +51,23 @@ const CheckoutSideMenu = () => {
                     ))
                 }
             </div>
-            <div className='px-6 py-4'>
-                <p className='flex items-center justify-between '>
+            <div className='px-6 pb-4'>
+                <p className='flex items-center justify-between'>
                     <span className='font-normal text-xl'>Total: </span>
                     <span className='font-medium text-2xl'>${totalPrice(context.cartProducts)}</span>
                 </p>
+                {(context.cartProducts.length >0) 
+                    ?  <div className='flex justify-center items-center mt-3 w-full h-10'>
+                           <button 
+                                className='bg-black text-white w-full py-2 rounded-lg'
+                                onClick={() => handleCheckout()}
+                            >
+                                Checkout
+                            </button>
+                        </div>
+                    : null
+                }
+                
             </div>
         </aside>
     )
