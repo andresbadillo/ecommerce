@@ -1,4 +1,5 @@
 import { useContext } from 'react';
+import { Link } from 'react-router-dom';
 import { XMarkIcon } from '@heroicons/react/24/solid';
 import { ShoppingCartContext } from '../../context';
 import { OrderCard } from '../OrderCard';
@@ -23,6 +24,22 @@ const CheckoutSideMenu = () => {
 
         context.setOrder([...context.order, orderToAdd]);
         context.setCartProducts([]);
+    }
+
+    let renderCheckoutButton;
+    if (context.cartProducts.length > 0) {
+        renderCheckoutButton = (
+            <Link to='/my-orders/last'>
+                <div className='flex justify-center items-center mt-3 w-full h-10'>
+                    <button 
+                        className='bg-black text-white w-full py-2 rounded-lg'
+                        onClick={() => handleCheckout()}
+                    >
+                        Checkout
+                    </button>
+                </div>
+            </Link>
+        ); 
     }
 
     return (
@@ -56,18 +73,7 @@ const CheckoutSideMenu = () => {
                     <span className='font-normal text-xl'>Total: </span>
                     <span className='font-medium text-2xl'>${totalPrice(context.cartProducts)}</span>
                 </p>
-                {(context.cartProducts.length >0) 
-                    ?  <div className='flex justify-center items-center mt-3 w-full h-10'>
-                           <button 
-                                className='bg-black text-white w-full py-2 rounded-lg'
-                                onClick={() => handleCheckout()}
-                            >
-                                Checkout
-                            </button>
-                        </div>
-                    : null
-                }
-                
+                {renderCheckoutButton}
             </div>
         </aside>
     )
