@@ -30,7 +30,7 @@ const Navbar = () => {
             return (
               <>
                 <li className='text-black/60'>
-                  andres@gmail.com
+                  {parsedAccount?.email}
                 </li>
                 <li>
                   <NavLink
@@ -107,20 +107,20 @@ const Navbar = () => {
                 </li>
                 <li>
                     <NavLink
-                        to='/furnitures'
-                        onClick={() => context.setSearchByCategory('furnitures')}
+                        to='/Miscellaneous'
+                        onClick={() => context.setSearchByCategory('Miscellaneous')}
                         className={({ isActive }) => isActive ? activeStyle : undefined}
                     >
-                        Furnitures
+                        Miscellaneous
                     </NavLink>
                 </li>
                 <li>
                     <NavLink
-                        to='/toys'
-                        onClick={() => context.setSearchByCategory('toys')}
+                        to='/shoes'
+                        onClick={() => context.setSearchByCategory('shoes')}
                         className={({ isActive }) => isActive ? activeStyle : undefined}
                     >
-                        Toys
+                        Shoes
                     </NavLink>
                 </li>
                 <li>
